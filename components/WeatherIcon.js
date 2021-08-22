@@ -1,5 +1,14 @@
 
-export default function WeatherIcon() {
+export default function WeatherIcon({ iconDescription }) {
+
+    if (iconDescription === 'cool') {
+        return (
+            <div icon="supermoon" data-label="Cool!">
+                <span className="moon"></span>
+                <span className="meteor"></span>
+            </div>
+        )
+    }
     return (
         <div>
             <div icon="sunny" data-label="Sunny">
