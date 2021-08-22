@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { FaMapMarkerAlt, FaLocationArrow } from 'react-icons/fa'
 import { currentWeatherUrlHandler, weatherHandler, googleUrlHandler } from '../config/index'
 import WeatherIcon from './WeatherIcon'
+import Daily from './Daily'
 import axios from 'axios'
 
 export default function WeatherDisplay() {
@@ -116,6 +117,7 @@ export default function WeatherDisplay() {
                     <span className='text-xl mr-10'>Pressure: {pressure} mb</span>
                     <span className='text-xl mr-10'>Wind Speed: {windSpeed} km/h</span>
                 </div>
+                <Daily />
             </div >
         </>
     )
