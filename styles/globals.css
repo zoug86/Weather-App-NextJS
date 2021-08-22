@@ -3,18 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:200');
 
 
 
 body{
-  font-family: 'Azeret'
+  font-family: 'Work Sans', sans-serif;
   /* display: flex;
   align-items: center;
   justify-content: center; */
 }
 
-@import url('https://fonts.googleapis.com/css?family=Work+Sans:200');
 
 :root {
   --shadow: #fd6f21;
@@ -424,7 +423,7 @@ body {
   flex-flow: row wrap;
   font-family: 'Work Sans', sans-serif; */
   background: #212125;
-  color: #e6e8db;
+  color: #e0e7d9;
 }
 
 

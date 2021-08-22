@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { FaMapMarkerAlt } from 'react-icons/fa'
-import { currentWeatherUrlHandler, weatherHandler } from '../config/index'
+import { FaMapMarkerAlt, FaLocationArrow } from 'react-icons/fa'
+import { currentWeatherUrlHandler, weatherHandler, googleUrlHandler } from '../config/index'
 import WeatherIcon from './WeatherIcon'
 import axios from 'axios'
 
@@ -34,14 +34,14 @@ export default function WeatherDisplay() {
         }
         const getCurrentPositionHandler = async (lat, lon) => {
             const { data: weatherData } = await axios.get(currentWeatherUrlHandler(lat, lon))
-            const { data: googleData } = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&sensor=true&key=AIzaSyBscti3YD - E_RQ8C3B6cGXdaongp9yeVqA`)
+            const { data: googleData } = await axios.get(googleUrlHandler(lat, lon))
             setLocation(googleData.plus_code.compound_code.substr(googleData.plus_code.compound_code.indexOf(' ') + 1))
             setTemperature(weatherData.current.temp)
             setDescription(weatherData.current.weather[0].description)
             setFeelsLike(weatherData.current.feels_like)
             setHumidity(weatherData.current.humidity)
             setPressure(weatherData.current.pressure)
-            setWindSpeed(weatherData.current.win_speed)
+            setWindSpeed(weatherData.current.wind_speed)
         }
         if (lat && lon) {
             getCurrentPositionHandler(lat, lon)
@@ -52,7 +52,7 @@ export default function WeatherDisplay() {
         if (loading) {
             const { data: weatherData } = await axios.get(currentWeatherUrlHandler(lat, lon))
             console.log(weatherData)
-            const { data: newGoogleData } = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&sensor=false&key=AIzaSyBscti3YD - E_RQ8C3B6cGXdaongp9yeVqA`)
+            const { data: newGoogleData } = await axios.get(googleUrlHandler(lat, lon))
             setLocation(`${searchCity.split(',')[0]}, ${newGoogleData.plus_code.compound_code.substr(newGoogleData.plus_code.compound_code.indexOf(',') + 1)}`)
             console.log(newGoogleData)
             setLoading(false)
@@ -73,10 +73,17 @@ export default function WeatherDisplay() {
     return (
         <>
             <h1 className='text-center text-6xl border-b-4 p-5'>Weather Forecast</h1>
+
             <div className='text-center text-4xl border-b-2 w-100 p-5'>
                 <h2>{location}</h2>
             </div>
-            <div className='flex flex-col justify-center items-center mt-20'>
+            <div className='flex align-center justify-start ml-10 mt-5'>
+                <FaLocationArrow className='text-3xl text-yellow-100 mb-5 cursor-pointer' onClick={() => setFirstLoading(true)} />
+                <span className='ml-4'>Current Location</span>
+            </div>
+
+            <div className='flex flex-col justify-center items-center'>
+
                 <div className='flex items-center justify-center text-gray-600 bg-yellow-100'>
                     <div className='relative text-gray-600 bg-red-100'>
                         <form onSubmit={handleSubmit}>
@@ -91,14 +98,23 @@ export default function WeatherDisplay() {
                             <FaMapMarkerAlt className='absolute top-0 right-0 text-black mt-3 mr-4' />
                         </form>
                     </div>
-                    <span className='flex justify-end w-72 text-black-800 text-xl pr-4'>{currentTime}</span>
+                    <span className='flex justify-end w-72 text-blue-900 text-xl pr-4'>{currentTime}</span>
                 </div>
                 <div className='flex items-center justify-center mt-10'>
-                    <WeatherIcon iconDescription={iconDescription} />
+                    <div className='flex flex-col items-center justify-center'>
+                        <WeatherIcon iconDescription={iconDescription} />
+                        <span className='text-xl'>{description}</span>
+                    </div>
+
                     <div className='flex flex-col items-center justify-center'>
                         <span className='text-6xl'>{temperature && Math.ceil(temperature)}°</span>
-                        <span className='text-xl'> Feels like {temperature && Math.ceil(temperature)}°</span>
+                        <span className='text-xl'> feels like {temperature && Math.ceil(feelsLike)}°</span>
                     </div>
+                </div>
+                <div className='flex justify-around mt-10'>
+                    <span className='text-xl mr-10'>Humidity: {humidity}%</span>
+                    <span className='text-xl mr-10'>Pressure: {pressure} mb</span>
+                    <span className='text-xl mr-10'>Wind Speed: {windSpeed} km/h</span>
                 </div>
             </div >
         </>
