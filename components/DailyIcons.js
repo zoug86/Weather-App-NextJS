@@ -13,7 +13,7 @@ export default function DailyIcons({ dailyInfo, currentTime }) {
 
     return (
         <>
-            <p className='mb-3 mt-2 text-xl'>{getDayName(currentTime)}</p>
+            <p className='mb-2 mt-2 text-xl'>{getDayName(currentTime)}</p>
             <hr className='mb-8' />
             <span className='text-6xl text-yellow-100'>
                 {description === 'clear sky' ? <FaSun /> : (description === 'few clouds') ?
@@ -23,7 +23,7 @@ export default function DailyIcons({ dailyInfo, currentTime }) {
                                 (description === 'light rain') ? <FaCloudRain /> : <FaCloudSun />}
             </span>
 
-            <p className='mt-5 mb-5'><span className='pr-2 text-md text-blue-200'>{minTemp}°</span> <span className='text-md text-red-300'>{maxTemp}°</span></p>
+            <p className='mt-5 mb-3'><span className='pr-2 text-md text-blue-200'>{minTemp}°</span> <span className='text-md text-red-300'>{maxTemp}°</span></p>
         </>
     )
 }

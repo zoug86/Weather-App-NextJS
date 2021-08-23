@@ -7,18 +7,26 @@
 
 body {
   font-family: 'Work Sans', sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  
   /* max-width: 42em; */
   padding: 2em; 
   margin: 0 auto;
   text-align: center;
   background: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2040&q=80');
+  background-repeat: none;
+  background-image: cover;
   color: #ffffff;
   font-weight: bold;
   max-height: 100vh;
+}
+
+.main-container{
+  margin: 0;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 :root {
@@ -471,5 +479,64 @@ body {
 }
 
 
-/* Daily Icons CSS */
+/* News Ticker CSS */
+@keyframes ticker {
+	0%   {margin-top: 0}
+	10%   {margin-top: -30px}
+	20%   {margin-top: -60px}
+	30%   {margin-top: -90px}
+	40%   {margin-top: -120px}
+	50%  {margin-top: -150px}
+	60%  {margin-top: -180px}
+	70%  {margin-top: -210px}
+	80%  {margin-top: -240px}
+	90%  {margin-top: -270px}
+	100% {margin-top: 0}
+}
 
+.news {
+	background: #222;
+  box-shadow: inset 0 -15px 30px rgba(0,0,0,0.4),
+                    0 5px 10px rgba(0,0,0,0.5);
+	height: 30px;
+  /* width: 700px; */
+	overflow: hidden;
+	border-radius: 4px;
+	padding: 3px
+} 
+
+.news span {
+	float: left;
+	color: #fff;
+	padding: 6px;
+	position: relative;
+  top: 4%;
+	border-radius: 4px;
+  box-shadow: inset 0 -15px 30px rgba(0,0,0,0.4);
+  font: 13px 'Lato', Helvetica, Arial, sans-serif;
+	background: #333;
+  cursor: pointer
+}
+
+.news ul {
+	float: left;
+	padding-left: 10px;
+  animation: ticker 20s ease infinite;
+}
+
+.news ul li {line-height: 30px}
+
+.news ul li a {
+	color: #fff;
+	text-decoration: none;
+  font: 14px 'Lato', Helvetica, Arial, sans-serif;
+}
+
+.news ul:hover { animation-play-state: paused }
+.news span:hover+ul { animation-play-state: paused }
+
+/* OTHER COLORS */
+.blue { background: #87add6 }
+.blue span { background: #2c66be }
+.red { background: #d23435 }
+.red span { background: #c22b2c }
