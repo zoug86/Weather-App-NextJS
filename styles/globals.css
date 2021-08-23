@@ -5,19 +5,25 @@
 
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:200');
 
-
-
-body{
+body {
   font-family: 'Work Sans', sans-serif;
-  /* display: flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center; */
+  justify-content: center;
+  /* max-width: 42em; */
+  padding: 2em; 
+  margin: 0 auto;
+  text-align: center;
+  background: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2040&q=80');
+  color: #ffffff;
+  font-weight: bold;
+  max-height: 100vh;
 }
-
 
 :root {
   --shadow: #fd6f21;
-  --ring: currentColor;
+  --ring: #e8e8f0;
   --blend1: #fc5830;
   --blend2: #f98c24;
   --blend-from: 0%;
@@ -411,22 +417,6 @@ body{
   animation: meteor 6250ms infinite ease-in;
 }
 
-
-
-
-body {
-  /* min-height: 100vh;
-  font-size: calc(.5em + 1vmin);
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-flow: row wrap;
-  font-family: 'Work Sans', sans-serif; */
-  background: #212125;
-  color: #e0e7d9;
-}
-
-
 [icon="sunny"] {
   display: block;
 }
@@ -479,3 +469,7 @@ body {
   5% {opacity: 1;}
   8% {transform: translate(-.6em, .6em) rotate(45deg); opacity: 0;}
 }
+
+
+/* Daily Icons CSS */
+
