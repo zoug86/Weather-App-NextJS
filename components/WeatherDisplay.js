@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FaMapMarkerAlt, FaLocationArrow } from 'react-icons/fa'
 import { WiHumidity } from 'react-icons/wi'
-import { BiWind } from 'react-icons/Bi'
+import { BiWind } from 'react-icons/bi'
 import { CgArrowsExchangeV } from 'react-icons/cg'
 import { currentWeatherUrlHandler, weatherHandler, googleUrlHandler, getDayName } from '../config/index'
 import WeatherIcon from './WeatherIcon'
