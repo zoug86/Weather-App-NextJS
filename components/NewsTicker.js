@@ -8,7 +8,7 @@ export default function NewsFeedTicker() {
 
     useEffect(() => {
         const getLatestNews = async () => {
-            const { data } = await axios.get(`http://api.mediastack.com/v1/news?access_key=${process.env.NEXT_PUBLIC_NEWS_API_KEY}&countries=au,-us`)
+            const { data } = await axios.get(`https://api.mediastack.com/v1/news?access_key=${process.env.NEXT_PUBLIC_NEWS_API_KEY}&countries=au,-us`)
             setNews(data.data)
             console.log(data.data)
             setLoading(false)
