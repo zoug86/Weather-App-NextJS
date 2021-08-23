@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import { FaMapMarkerAlt, FaLocationArrow } from 'react-icons/fa'
+import { WiHumidity } from 'react-icons/wi'
+import { BiWind } from 'react-icons/Bi'
+import { CgArrowsExchangeV } from 'react-icons/cg'
 import { currentWeatherUrlHandler, weatherHandler, googleUrlHandler, getDayName } from '../config/index'
 import WeatherIcon from './WeatherIcon'
 import DailyIcons from './DailyIcons'
@@ -106,9 +109,9 @@ export default function WeatherDisplay() {
                     <span className='ml-4'>Current Location</span>
                 </div>
 
-                <div className='flex flex-col justify-center items-center max-w-screen-md'>
+                <div className='flex flex-col justify-center items-center'>
 
-                    <div className='flex items-center justify-center text-gray-600 bg-yellow-100'>
+                    <div className='flex items-center justify-center text-gray-600 bg-yellow-100 form-time'>
                         <div className='relative text-gray-600 bg-red-100'>
                             <form onSubmit={handleSubmit}>
                                 <input
@@ -122,7 +125,7 @@ export default function WeatherDisplay() {
                                 <FaMapMarkerAlt className='absolute top-0 right-0 text-black mt-3 mr-4' />
                             </form>
                         </div>
-                        <span className='flex justify-end w-72 text-blue-900 text-xl pr-4'>{currentTime}</span>
+                        <span className='flex justify-end items-center w-72 text-blue-900 text-xl pr-4 h-12'>{currentTime}</span>
                     </div>
                     <div className='flex items-center justify-center mt-2'>
                         <div className='flex flex-col items-center justify-center'>
@@ -131,23 +134,17 @@ export default function WeatherDisplay() {
                         </div>
 
                         <div className='flex flex-col items-center justify-center'>
-                            <span className={`text-8xl ${temperature < 30 ? 'text-green-800' : 'text-red-800'}`}>{temperature && Math.ceil(temperature)}°</span>
+                            <span className={`text-8xl font-extrabold ${temperature < 30 ? 'text-green-900' : 'text-red-900'}`}>{temperature && Math.ceil(temperature)}°</span>
                             <span className='text-xl text-black'> feels like {temperature && Math.ceil(feelsLike)}°</span>
                         </div>
                     </div>
                     <div className='flex justify-around mt-10'>
-                        <span className='text-xl pr-10 w-50'>Humidity: {humidity}%</span>
-                        <span className='text-xl pr-10'>Pressure: {pressure} mb</span>
-                        <span className='text-xl'>Wind Speed: {windSpeed} km/h</span>
+                        <span className='text-xl pr-10 w-50'><WiHumidity style={{ fontSize: '5rem', color: 'palegoldenrod' }} /> {humidity}%</span>
+                        <span className='text-xl pr-10'><CgArrowsExchangeV style={{ fontSize: '5rem', color: 'palegoldenrod' }} /> {pressure} mb</span>
+                        <span className='text-xl'><BiWind style={{ fontSize: '5rem', color: 'palegoldenrod' }} /> {windSpeed} km/h</span>
                     </div>
-                    <div className='flex justify-between mt-5 mb-5'>
-                        {daysInfo.map((day, index) => (
-                            <div key={index} className='pr-8 pl-8 mt-5 border-r border-l border-yellow-300 bg-black bg-opacity-40 m-5'>
-
-                                <DailyIcons dailyInfo={day} currentTime={currentTime} />
-
-                            </div>
-                        ))}
+                    <div className='flex justify-between mt-5 mb-5 weekly-info'>
+                        <DailyIcons daysInfo={daysInfo} currentTime={currentTime} />
                     </div>
 
                 </div >

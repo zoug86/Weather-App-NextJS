@@ -16,9 +16,12 @@ export const googleUrlHandler = (lat, lon) => `https://maps.googleapis.com/maps/
 // - broken clouds (main: Clouds)
 // - scattered clouds (main: Clouds)
 
-export const getDayName = (dateString) => {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+export const getDayName = (dateString, index) => {
+
+    const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
     const d = new Date(dateString);
-    const dayName = days[d.getDay()];
+    //console.log(d.getDay())
+    const dayName = days[(d.getDay() + index) % 7];
     return dayName;
 }

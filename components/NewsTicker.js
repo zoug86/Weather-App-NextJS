@@ -18,7 +18,7 @@ export default function NewsFeedTicker() {
     //console.log(news)
     return (
 
-        <div className="news blue w-full">
+        <div className="news blue mb-3">
             <span onClick={() => setLoading(true)}> Latest News</span>
             <ul>
                 {news.map((info, index) => (
