@@ -8,9 +8,17 @@ export default function NewsFeedTicker() {
 
     useEffect(() => {
         const getLatestNews = async () => {
-            const { data } = await axios.get(`https://api.mediastack.com/v1/news?access_key=${process.env.NEXT_PUBLIC_NEWS_API_KEY}&countries=au,-us`)
-            setNews(data.data)
-            console.log(data.data)
+            const { data } = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}&country=us,ca`, {
+                header: {
+                    'Content-Type': 'text/event-stream',
+                    'Cache-Control': 'no-cache',
+                    'Connection': 'keep-alive',
+                    'X-Accel-Buffering': 'no'
+                }
+
+            })
+            setNews(data.results)
+            console.log(data.results)
             setLoading(false)
         }
         getLatestNews()
@@ -22,7 +30,7 @@ export default function NewsFeedTicker() {
             <span onClick={() => setLoading(true)}> Latest News</span>
             <ul>
                 {news.map((info, index) => (
-                    <li className='text-left' key={index}><a href="#">{info.title}</a></li>
+                    <li className='text-left' key={index}><a href={info.link} target="_blank">{info.title}</a></li>
                 ))}
             </ul>
         </div>
