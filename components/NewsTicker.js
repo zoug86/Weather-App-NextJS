@@ -8,13 +8,14 @@ export default function NewsFeedTicker() {
 
     useEffect(() => {
         const getLatestNews = async () => {
-            const { data } = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}&country=us,ca`, {
-                header: {
-                    'Content-Type': 'text/event-stream',
-                    'Cache-Control': 'no-cache',
-                    'Connection': 'keep-alive',
-                    'X-Accel-Buffering': 'no'
-                }
+            const { data } = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}&country=us`, {
+                // header: {
+                //     'Content-Type': 'text/event-stream',
+                //     'Cache-Control': 'no-cache',
+                //     'Connection': 'keep-alive',
+                //     'X-Accel-Buffering': 'no',
+                //     'Acces-Control-Allow-Origin': "*"
+                // }
 
             })
             setNews(data.results)

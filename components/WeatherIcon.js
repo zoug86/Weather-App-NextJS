@@ -1,7 +1,7 @@
 
 export default function WeatherIcon({ iconDescription }) {
 
-    if (iconDescription === 'cool') {
+    if (iconDescription === 'cool' || iconDescription === 'haze') {
         return (
             <div icon="supermoon" data-label="">
                 <span className="moon"></span>
@@ -46,7 +46,7 @@ export default function WeatherIcon({ iconDescription }) {
             </div>
         )
     }
-    if (iconDescription === 'rain') {
+    if (iconDescription === 'rain' || iconDescription === 'thunderstorm') {
         return (
             <div icon="stormy" data-label="">
                 <span className="cloud"></span>

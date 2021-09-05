@@ -62,21 +62,24 @@ export default function WeatherDisplay() {
     }, [firstLoading])
 
     // Get user entered location info
-    useEffect(async () => {
-        if (loading) {
-            const { data: weatherData } = await axios.get(currentWeatherUrlHandler(lat, lon))
-            //console.log(weatherData)                
-            setLoading(false)
-            setTemperature(weatherData.current.temp)
-            setDescription(weatherData.current.weather[0].description)
-            setIconDescription(weatherData.current.weather[0].main.toLowerCase())
-            setFeelsLike(weatherData.current.feels_like)
-            setHumidity(weatherData.current.humidity)
-            setPressure(weatherData.current.pressure)
-            setWindSpeed(weatherData.current.wind_speed)
-            setDaysInfo(weatherData.daily)
+    useEffect(() => {
+        const enteredPositionHandler = async () => {
+            if (loading) {
+                const { data: weatherData } = await axios.get(currentWeatherUrlHandler(lat, lon))
+                //console.log(weatherData)                
+                setLoading(false)
+                setTemperature(weatherData.current.temp)
+                setDescription(weatherData.current.weather[0].description)
+                setIconDescription(weatherData.current.weather[0].main.toLowerCase())
+                setFeelsLike(weatherData.current.feels_like)
+                setHumidity(weatherData.current.humidity)
+                setPressure(weatherData.current.pressure)
+                setWindSpeed(weatherData.current.wind_speed)
+                setDaysInfo(weatherData.daily)
 
+            }
         }
+        enteredPositionHandler()
     }, [loading])
 
     const handleSubmit = async (e) => {
@@ -139,16 +142,16 @@ export default function WeatherDisplay() {
                         </div>
                     </div>
                     <div className='flex justify-around mt-10'>
-                        <span className='text-xl pr-10 w-50'><WiHumidity style={{ fontSize: '5rem', color: 'palegoldenrod' }} /> {humidity}%</span>
-                        <span className='text-xl pr-10'><CgArrowsExchangeV style={{ fontSize: '5rem', color: 'palegoldenrod' }} /> {pressure} mb</span>
-                        <span className='text-xl'><BiWind style={{ fontSize: '5rem', color: 'palegoldenrod' }} /> {windSpeed} km/h</span>
+                        <span className='flex flex-col items-center justify-center text-xl pr-10'><WiHumidity style={{ fontSize: '5rem', color: 'palegoldenrod' }} />{humidity}%</span>
+                        <span className='flex flex-col items-center justify-center text-xl pr-10'><CgArrowsExchangeV style={{ fontSize: '5rem', color: 'palegoldenrod' }} /> {pressure} mb</span>
+                        <span className='flex flex-col items-center justify-center text-xl'><BiWind style={{ fontSize: '5rem', color: 'palegoldenrod' }} /> {windSpeed} km/h</span>
                     </div>
                     <div className='flex justify-between mt-5 mb-5 weekly-info'>
                         <DailyIcons daysInfo={daysInfo} currentTime={currentTime} />
                     </div>
 
                 </div >
-                <NewsFeedTicker />
+                <NewsFeedTicker /> // Enable CORS on your browser for this to work: install Moesif Oringins and CORS changer extension on chrome and enable it.
             </div>
 
         </>
